@@ -1,0 +1,139 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container py-5 text-center">
+  <h1 class="display-4 fw-bold">
+    Ensure <span class="text-primary">Food Safety</span> During Transit
+  </h1>
+  <p class="lead text-muted mx-auto" style="max-width: 700px">
+    Real-time temperature monitoring, quality control, and delivery tracking for
+    the food industry. Keep your products safe and your customers satisfied.
+  </p>
+
+  <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+    {% if user.is_authenticated %}
+    <a href="{% url 'dashboard' %}" class="btn btn-primary btn-lg px-4">
+      Dashboard
+    </a>
+    {% else %}
+    <a href="{% url 'register' %}" class="btn btn-primary btn-lg px-4">
+      Get Started
+    </a>
+    {% endif %}
+    <a href="#features" class="btn btn-outline-primary btn-lg px-4">
+      Learn More
+    </a>
+  </div>
+
+  <div class="mt-5">
+    <img
+      src="{% static 'truck.avif' %}"
+      class="img-fluid rounded shadow-sm"
+      alt="AI and Logistics Dashboard"
+    />
+  </div>
+</div>
+
+<!-- Features Section -->
+<div id="features" class="bg-light py-5">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-4">Complete Food Safety Solution</h2>
+    <p class="text-muted mb-5">
+      Everything you need to monitor and maintain food safety during
+      transportation
+    </p>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <i
+              data-lucide="thermometer"
+              class="text-primary mb-3"
+              style="width: 32px; height: 32px"
+            ></i>
+            <h5 class="card-title">Temperature Monitoring</h5>
+            <p class="text-muted">
+              Real-time temperature and humidity tracking with instant alerts
+              for any violations.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <i
+              data-lucide="bar-chart-2"
+              class="text-primary mb-3"
+              style="width: 32px; height: 32px"
+            ></i>
+            <h5 class="card-title">Analytics Dashboard</h5>
+            <p class="text-muted">
+              Comprehensive analytics and reporting for better decision making.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body">
+            <i
+              data-lucide="shield"
+              class="text-primary mb-3"
+              style="width: 32px; height: 32px"
+            ></i>
+            <h5 class="card-title">Quality Assurance</h5>
+            <p class="text-muted">
+              Automated quality checks and compliance monitoring throughout
+              transit.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Stats Section -->
+<div class="bg-primary text-white py-5 text-center">
+  <div class="container">
+    <h2 class="fw-bold mb-3">Trusted by food businesses worldwide</h2>
+    <p class="lead mb-4">
+      Ensuring food safety and quality across the supply chain
+    </p>
+    <div class="row g-4 justify-content-center">
+      <div class="col-6 col-md-4">
+        <h3 class="display-5 fw-bold">100k+</h3>
+        <p>Deliveries Monitored</p>
+      </div>
+      <div class="col-6 col-md-4">
+        <h3 class="display-5 fw-bold">24/7</h3>
+        <p>Temperature Checks</p>
+      </div>
+      <div class="col-12 col-md-4">
+        <h3 class="display-5 fw-bold">99%</h3>
+        <p>Customer Satisfaction</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA Section -->
+<div class="bg-light py-5">
+  <div class="container">
+    <div class="bg-primary text-white p-5 rounded shadow-lg text-center">
+      <h2 class="fw-bold">Ready to get started?</h2>
+      <p class="lead mt-2">
+        Start your free trial today and join thousands using our AI-powered
+        system.
+      </p>
+      <a href="{% url 'register' %}" class="btn btn-light btn-lg mt-3">
+        Sign up for free
+      </a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

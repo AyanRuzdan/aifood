@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-5">
+  <div class="bg-white p-4 rounded shadow-sm">
+    <h2 class="text-primary fw-bold mb-4">Track Current Deliveries</h2>
+
+    {% if deliveries %}
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Food Item</th>
+          <th>Location</th>
+          <th>Temperature</th>
+          <th>Humidity</th>
+          <th>Status</th>
+          <th>Last Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for d in deliveries %}
+        <tr>
+          <td>{{ d.food_item.name }}</td>
+          <td>{{ d.current_location }}</td>
+          <td>{{ d.current_temperature }} °C</td>
+          <td>{{ d.current_humidity }}%</td>
+          <td>{{ d.status }}</td>
+          <td>{{ d.timestamp|date:"M d, Y H:i" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="text-muted">No active deliveries to show.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

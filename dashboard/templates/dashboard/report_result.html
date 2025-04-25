@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-5">
+  <div class="p-4 bg-white shadow rounded">
+    <h2 class="mb-4 text-success fw-bold">Anomaly Detection Report</h2>
+
+    {% if labels and values %}
+    <div class="my-4">
+      <canvas id="anomalyChart"></canvas>
+    </div>
+    {% endif %} {% if table %}
+    <div class="table-responsive">{{ table|safe }}</div>
+    {% else %}
+    <p>No data to display.</p>
+    {% endif %}
+
+    <a href="{% url 'report_upload' %}" class="btn btn-secondary mt-3">
+      Upload Another File
+    </a>
+  </div>
+</div>
+
+{% if labels and values %}
+<script>
+  const labels = {{ labels|safe }};
+  const values = {{ values|safe }};
+
+  const ctx = document.getElementById('anomalyChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Anomaly Count',
+        data: values,
+        backgroundColor: ['#28a745', '#dc3545'],  // Green for normal, red for anomaly
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            precision: 0
+          }
+        }
+      }
+    }
+  });
+</script>
+{% endif %} {% endblock %}
