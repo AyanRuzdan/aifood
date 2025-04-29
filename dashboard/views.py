@@ -1,15 +1,29 @@
 import json
 from collections import Counter
-from .anomaly_detection import detect_anomalies  # import your function
+from .anomaly_detection import detect_anomalies 
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from dashboard.forms import FoodItemForm
-# Create your views here.
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render
 from .anomaly_detection import detect_anomalies
 from django.contrib.auth.decorators import login_required
 from dashboard.models import FoodItem, Monitoring
+from django.shortcuts import render, redirect
+from .models import Shipment 
+
+def create_shipment(request):
+    if request.method == 'POST':
+        start_location = request.POST.get('startLocation')
+        end_location = request.POST.get('endLocation')
+        
+        shipment = Shipment(start_location=start_location, end_location=end_location)
+        shipment.save()
+        
+        return redirect('shipment_success')
+
+    return render(request, 'create_shipment.html')
+
 
 
 def dashboard(request):

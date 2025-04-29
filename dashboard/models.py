@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Shipment(models.Model):
+    start_location = models.CharField(max_length=255)
+    end_location = models.CharField(max_length=255)
 
 class FoodItem(models.Model):
     user = models.ForeignKey(
